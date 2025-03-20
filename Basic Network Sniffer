@@ -1,0 +1,27 @@
+Install scapy if you haven't already. You can install it using pip:
+
+pip install scapy
+
+You may need to run your script with administrative privileges (e.g., using sudo on Linux) to capture packets.
+
+Example Code: 
+from scapy.all import sniff
+
+def packet_callback(packet):
+    # Print a summary of the packet
+    print(packet.summary())
+
+def start_sniffer(interface=None):
+    # Start sniffing packets
+    print("Starting the sniffer...")
+    sniff(iface=interface, prn=packet_callback, store=0)
+
+if __name__ == "__main__":
+    # You can specify the network interface to sniff on, e.g., 'eth0', 'wlan0', etc.
+    # If you want to sniff on all interfaces, you can set interface=None
+    start_sniffer(interface=None)
+
+Save the code to a file, for example, sniffer.py.
+Run the script with administrative privileges:
+
+sudo python sniffer.py
